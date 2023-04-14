@@ -29,6 +29,7 @@ from modules.dimen_reduction import plot_reduction_SVD_sk,plot_reduction_PCA_sk,
 import time
 app = FastAPI()
 
+#if folder don't exist
 create_folders()
 
 #Download images
