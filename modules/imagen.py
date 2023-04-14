@@ -15,12 +15,9 @@ from PIL import Image
 #How distant is your face from the average? How would you measure it?
 #upload my photo, resize 256x256 and grayscale
 def my_photo_re():
-    try:
-        my_photo =cv2.imread("./imagenes/SantiagoRG.jpeg",0)
-        my_reshape = cv2.resize(my_photo, dsize=(256, 256), interpolation=cv2.INTER_CUBIC)
-        return my_reshape
-    except:
-        None
+    my_photo =cv2.imread("./imagenes/SantiagoRG.jpeg",0)
+    my_reshape = cv2.resize(my_photo, dsize=(256, 256), interpolation=cv2.INTER_CUBIC)
+    return my_reshape
 
 def average_photos(my_pic=my_photo_re()):
     try:
