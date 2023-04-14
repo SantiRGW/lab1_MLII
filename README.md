@@ -1,2 +1,2 @@
-# lab1_MLII
-Dimensionality reduction
+# Lab1_ML2
+Dimensionality Reduction
