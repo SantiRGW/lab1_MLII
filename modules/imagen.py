@@ -15,30 +15,36 @@ from PIL import Image
 #How distant is your face from the average? How would you measure it?
 #upload my photo, resize 256x256 and grayscale
 def my_photo_re():
-    my_photo =cv2.imread("./imagenes/SantiagoRG.jpeg",0)
-    my_reshape = cv2.resize(my_photo, dsize=(256, 256), interpolation=cv2.INTER_CUBIC)
-    return my_reshape
+    try:
+        my_photo =cv2.imread("./imagenes/SantiagoRG.jpeg",0)
+        my_reshape = cv2.resize(my_photo, dsize=(256, 256), interpolation=cv2.INTER_CUBIC)
+        return my_reshape
+    except:
+        None
 
 def average_photos(my_pic=my_photo_re()):
-    my_pic=my_pic
-    #Count pictures from drive
-    initial_count = 0
-    dir = r".\imagenes"
-    for path in os.listdir(dir):
-        if os.path.isfile(os.path.join(dir, path)):
-            initial_count += 1
-    #Read and convert imagen with sixe 256x256 and grayscale
-    list_resize_gray = []
-    for path in os.listdir(dir):
-        try:
-            img = cv2.imread(os.path.join(dir, path),0)
-            res = cv2.resize(img, dsize=(256, 256), interpolation=cv2.INTER_CUBIC)
-        except Exception as e:
+    try:
+        my_pic=my_pic
+        #Count pictures from drive
+        initial_count = 0
+        dir = r".\imagenes"
+        for path in os.listdir(dir):
+            if os.path.isfile(os.path.join(dir, path)):
+                initial_count += 1
+        #Read and convert imagen with sixe 256x256 and grayscale
+        list_resize_gray = []
+        for path in os.listdir(dir):
+            try:
+                img = cv2.imread(os.path.join(dir, path),0)
+                res = cv2.resize(img, dsize=(256, 256), interpolation=cv2.INTER_CUBIC)
+            except Exception as e:
 
-            print(str(e))
-        list_resize_gray.append(res)
-    average_face =np.array(list_resize_gray)
-    return np.mean(average_face, axis=0)
+                print(str(e))
+            list_resize_gray.append(res)
+        average_face =np.array(list_resize_gray)
+        return np.mean(average_face, axis=0)
+    except:
+        return None
 
 def dis_img(my_pic=my_photo_re(),img_average=average_photos()):
     distant_imagen = np.linalg.norm(my_pic.flatten() - img_average.flatten())

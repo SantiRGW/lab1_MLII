@@ -2,6 +2,8 @@
 from typing import Union
 from fastapi import FastAPI,UploadFile
 from starlette.responses import StreamingResponse
+#folders
+from modules.create_paths import create_folders
 #Download img
 from modules.download_img import dowload_process
 #Num
@@ -25,10 +27,9 @@ from modules.dimen_reduction import plot_reduction_SVD,plot_reduction_PCA,plot_r
 from modules.dimen_reduction import plot_reduction_SVD_sk,plot_reduction_PCA_sk,plot_reduction_TSNE_sk,reduction_SVD_sk,reduction_PCA_sk,reduction_TSNE_sk
 #Time
 import time
-
-
-
 app = FastAPI()
+
+create_folders()
 
 #Download images
 @app.get("/0_Download_images")
