@@ -25,10 +25,10 @@ def matrix_a(row,col):
     try:
         #eigenvalues and eigenvectors of A'A
         invert= np.linalg.inv(matrix)
-        A = invert*matrix
+        A = matrix.T @ matrix
         w_1,v_1=eig(A)
         #eigenvalues and eigenvectors of AA'
-        A = matrix*invert
+        A = matrix @ matrix.T
         w_2,v_2=eig(A)
         #We can notice that the results of eigenvalues and eigenvectors of A'A and AA' are the same
         return (matrix, int(rank), int(trace), det,invert, w_1, v_1, w_2, v_2)
